@@ -75,6 +75,7 @@ UpgradeLog*.XML
 *.ear
 /.gradle
 /build
+**/target/
 
 #GRAILS
 /.classpath
