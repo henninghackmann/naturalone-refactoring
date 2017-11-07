@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+ <modelVersion>4.0.0</modelVersion>
+ <groupId>net.aokv.naturalone</groupId>
+ <artifactId>net.aokv.naturalone.root</artifactId>
+ <version>1.0.0</version>
+ <packaging>pom</packaging>
+ <parent>
+   <groupId>net.aokv.naturalone</groupId>
+   <artifactId>net.aokv.naturalone.configuration</artifactId>
+   <version>1.0.0-SNAPSHOT</version>
+  <relativePath>./releng/net.aokv.naturalone.configuration</relativePath>
+ </parent>
+
+ <modules>
+ 	<module>bundles</module>
+	<module>features</module> 
+	<module>releng</module> 
+	<module>tests</module> 
+ </modules>
+</project>
+

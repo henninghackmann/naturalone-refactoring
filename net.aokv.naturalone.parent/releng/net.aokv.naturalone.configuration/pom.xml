@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+ <modelVersion>4.0.0</modelVersion>
+ <groupId>net.aokv.naturalone</groupId>
+ <artifactId>net.aokv.naturalone.configuration</artifactId>
+ <version>1.0.0-SNAPSHOT</version>
+ <packaging>pom</packaging>
+
+ <properties>
+  <tycho.version>1.0.0</tycho.version>
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <eclipse-repo.url>http://artifacts.ao-devnet/eclipse-mars</eclipse-repo.url>
+  <official-eclipse-repo.url>http://artifacts.ao-devnet/official-eclipse-mars</official-eclipse-repo.url>
+   <maven.deploy.skip>true</maven.deploy.skip>
+ </properties>
+
+ <repositories>
+  <repository>
+   <id>eclipse</id>
+   <url>${eclipse-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
+  <repository>
+   <id>official-eclipse</id>
+   <url>${official-eclipse-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
+ </repositories>
+
+ 
+ <distributionManagement>
+  <repository>
+	<id>eclipse-local</id>
+	<name>eclipse-local</name>
+	<url>http://artifacts.ao-devnet/eclipse-local</url>
+  </repository>
+</distributionManagement>
+ 
+ <build>
+ 
+  <extensions>
+      <!-- Enabling the use of FTP -->
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-http</artifactId>
+      </extension>
+    </extensions>
+ 
+  <plugins>
+  
+   <plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>tycho-maven-plugin</artifactId>
+    <version>${tycho.version}</version>
+    <extensions>true</extensions>
+   </plugin>
+   
+   <plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>target-platform-configuration</artifactId>
+    <version>${tycho.version}</version>
+    <configuration>
+     <environments>
+      <environment>
+       <os>linux</os>
+       <ws>gtk</ws>
+       <arch>x86</arch>
+      </environment>
+      <environment>
+       <os>linux</os>
+       <ws>gtk</ws>
+       <arch>x86_64</arch>
+      </environment>
+      <environment>
+       <os>win32</os>
+       <ws>win32</ws>
+       <arch>x86</arch>
+      </environment>
+      <environment>
+       <os>win32</os>
+       <ws>win32</ws>
+       <arch>x86_64</arch>
+      </environment>
+      <environment>
+       <os>macosx</os>
+       <ws>cocoa</ws>
+       <arch>x86_64</arch>
+      </environment>
+     </environments>
+    </configuration>
+   </plugin>
+  </plugins>
+ </build>
+</project>
+

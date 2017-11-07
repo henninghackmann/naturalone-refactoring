@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: net.aokv.naturalone.refactoring.tests
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: net.aokv.naturalone.refactoring;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Alte Oldenburger
+Require-Bundle: org.junit,
+ org.mockito;bundle-version="1.9.5"
+Import-Package: org.eclipse.ltk.core.refactoring

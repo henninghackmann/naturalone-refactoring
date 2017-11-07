@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_AyRRMKmhEeeCzIajqyMjMQ">
+  <imports xsi:type="commands:BindingContext" xmi:id="_e8THIKpiEeeCzIajqyMjMQ" elementId="org.eclipse.ui.contexts.dialogAndWindow"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_vep-4KmhEeeCzIajqyMjMQ" featurename="commands" parentElementId="org.eclipse.e4.legacy.ide.application">
+    <elements xsi:type="commands:Command" xmi:id="_T0iLwKmiEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.command.renamesubroutine" commandName="Rename Subroutine" description="Rename a inline subroutine"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_bI0U4KmmEeeCzIajqyMjMQ" featurename="handlers" parentElementId="org.eclipse.e4.legacy.ide.application">
+    <elements xsi:type="commands:Handler" xmi:id="_nCsF4KmmEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.handler.renamesubroutine" contributionURI="bundleclass://net.aokv.naturalone.refactoring/net.aokv.naturalone.refactoring.handler.RenameSubroutine" command="_T0iLwKmiEeeCzIajqyMjMQ"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_9tQj4KmnEeeCzIajqyMjMQ" featurename="menuContributions" parentElementId="org.eclipse.e4.legacy.ide.application">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_FzqDQKmoEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.menucontribution.refactor" positionInParent="before=additions" parentId="#NaturalSourceEditorContext">
+      <children xsi:type="menu:Menu" xmi:id="_Y5n2MKpmEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.menu.refactor" label="Refactor">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_eEv3QKpmEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.handledmenuitem.renamesubroutine" label="Rename Subroutine" command="_T0iLwKmiEeeCzIajqyMjMQ"/>
+      </children>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_2vUQYKpiEeeCzIajqyMjMQ" featurename="bindingTables" parentElementId="org.eclipse.e4.legacy.ide.application">
+    <elements xsi:type="commands:BindingTable" xmi:id="_HzPrcKpjEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.bindingtable.renamesubroutine" bindingContext="_e8THIKpiEeeCzIajqyMjMQ">
+      <bindings xmi:id="_y0yCkKpkEeeCzIajqyMjMQ" elementId="net.aokv.naturalone.refactoring.keybinding.renamesubroutine" keySequence="M1+6" command="_T0iLwKmiEeeCzIajqyMjMQ"/>
+    </elements>
+  </fragments>
+</fragment:ModelFragments>
