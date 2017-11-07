@@ -11,7 +11,8 @@
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <eclipse-repo.url>http://artifacts.ao-devnet/eclipse-mars</eclipse-repo.url>
   <official-eclipse-repo.url>http://artifacts.ao-devnet/official-eclipse-mars</official-eclipse-repo.url>
-   <maven.deploy.skip>true</maven.deploy.skip>
+  <sag-repo.url>http://artifacts.ao-devnet/eclipse-local/com-softwareag-p2/ </sag-repo.url>
+  <maven.deploy.skip>true</maven.deploy.skip>
  </properties>
 
  <repositories>
@@ -23,6 +24,11 @@
   <repository>
    <id>official-eclipse</id>
    <url>${official-eclipse-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
+   <repository>
+   <id>sag-repo</id>
+   <url>${sag-repo.url}</url>
    <layout>p2</layout>
   </repository>
  </repositories>
