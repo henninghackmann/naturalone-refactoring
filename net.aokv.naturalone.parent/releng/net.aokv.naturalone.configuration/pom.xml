@@ -15,6 +15,7 @@
   <maven.deploy.skip>true</maven.deploy.skip>
  </properties>
 
+ <!-- Repositories should be commented out to only use the target definition 
  <repositories>
   <repository>
    <id>eclipse</id>
@@ -32,7 +33,7 @@
    <layout>p2</layout>
   </repository>
  </repositories>
-
+ -->
  
  <distributionManagement>
   <repository>
@@ -55,17 +56,60 @@
   <plugins>
   
    <plugin>
-    <groupId>org.eclipse.tycho</groupId>
-    <artifactId>tycho-maven-plugin</artifactId>
-    <version>${tycho.version}</version>
-    <extensions>true</extensions>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-maven-plugin</artifactId>
+		<version>${tycho.version}</version>
+		<extensions>true</extensions>
    </plugin>
    
+   <plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-compiler-plugin</artifactId>
+		<version>${tycho.version}</version>
+		<configuration>
+			<source>1.7</source>
+			<target>1.7</target>
+			<encoding>UTF-8</encoding>
+		</configuration>
+	</plugin>
+	
+	<plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-packaging-plugin</artifactId>
+		<version>${tycho.version}</version>
+		<configuration>
+			<archive>
+				<addMavenDescriptor>false</addMavenDescriptor>
+			</archive>
+		</configuration>
+	</plugin>		
+
    <plugin>
     <groupId>org.eclipse.tycho</groupId>
     <artifactId>target-platform-configuration</artifactId>
     <version>${tycho.version}</version>
     <configuration>
+	
+	
+	<target>
+		<artifact>
+			<groupId>net.aokv.naturalone</groupId>
+			<artifactId>net.aokv.naturalone.target</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</artifact>
+	</target>
+	<!-- configure the p2 target environments for multi-platform build -->
+	 <dependency-resolution>
+
+		<extraRequirements>
+			<requirement>
+				<type>eclipse-plugin</type>
+				<id>org.eclipse.equinox.event</id>
+				<versionRange>0.0.0</versionRange>
+			</requirement>
+		</extraRequirements>
+	</dependency-resolution>
+				
      <environments>
       <environment>
        <os>linux</os>

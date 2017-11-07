@@ -1,7 +1,8 @@
 package net.aokv.naturalone.refactoring.process;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.is;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,7 +27,7 @@ import com.softwareag.naturalone.natural.parser.internal.ITokenForEditor;
 import com.softwareag.naturalone.natural.sourceeditor.editor.internal.INaturalParsingUnit;
 
 @SuppressWarnings("restriction")
-public class RenameSubroutineRefactoringShould
+public class RenameSubroutineRefactoringTest
 {
 	private static final int LENGTH_SELECTED = 14;
 	private static final String NEW_SUBROUTINE_NAME = "NEW-SUBROUTINE";
