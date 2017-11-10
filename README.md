@@ -1,4 +1,4 @@
-﻿# Example project for Rename Subroutine
+﻿# Beispiel Projekt Refactoring Plugin
 
 Dies ist Beispiel Code für die Implementierung eines Refactoring Plugins für NaturalOne. 
 Der Beispielcode ist nicht geeignet für den produktiven Einsatz.
