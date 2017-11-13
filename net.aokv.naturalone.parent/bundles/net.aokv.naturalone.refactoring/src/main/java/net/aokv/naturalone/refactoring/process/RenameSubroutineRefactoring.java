@@ -1,5 +1,7 @@
 package net.aokv.naturalone.refactoring.process;
 
+// TODO: unused imports
+
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.CoreException;
@@ -70,6 +72,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 		return status;
 	}
 
+	// TODO: Variablennamen ausschreiben
 	private void processNodeList(final TextSelection textSel, INaturalASTNode astRoot, MultiTextEdit edit)
 	{
 		for (Iterator<INode> iterator = astRoot.getChildren().iterator(); iterator.hasNext();)
@@ -84,6 +87,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 		}
 	}
 
+	// TODO: Variablennamen ausschreiben
 	private void processNode(TextSelection textSel, MultiTextEdit edit, INaturalASTNode node)
 	{
 		ENaturalASTNodeType type = node.getNaturalASTNodeType();
@@ -91,6 +95,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 		{
 			ITokenForEditor token = node.getTokenForPosition();
 
+			// TODO: könnte ggfs. eine sprechende Methode werden
 			if (token != null)
 			{
 				if (textSel.getText().equals(token.getImage()) && textSel.getLength() == token.getLength())
@@ -111,6 +116,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 	@Override
 	public Change createChange(IProgressMonitor arg0) throws CoreException, OperationCanceledException
 	{
+		// TODO: um der Erwartung besser zu entsprechen, sollte der change vielleicht wirklich erst hier erzeugt werden
 		return change;
 	}
 
@@ -120,12 +126,14 @@ public class RenameSubroutineRefactoring extends Refactoring
 		return name;
 	}
 
+	// TODO: was hat der Name mit dem Status zu tun? warum gibt ein Setter etwas zurück?
 	public RefactoringStatus setNewSubroutineName(String text)
 	{
 		this.newSubroutineName = text;
 		return new RefactoringStatus();
 	}
 	
+	// TODO: löschen
 	public void setUpdateReferences(boolean selection)
 	{
 		// TODO Auto-generated method stub

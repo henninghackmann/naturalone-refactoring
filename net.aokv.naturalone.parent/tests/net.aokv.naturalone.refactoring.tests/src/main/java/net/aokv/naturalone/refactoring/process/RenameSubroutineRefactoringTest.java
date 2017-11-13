@@ -26,6 +26,8 @@ import com.softwareag.naturalone.natural.parser.internal.INode;
 import com.softwareag.naturalone.natural.parser.internal.ITokenForEditor;
 import com.softwareag.naturalone.natural.sourceeditor.editor.internal.INaturalParsingUnit;
 
+// TODO: Der Test ist aufgrund der vielen Mocks recht schwierig zu verstehen. Kann das evtl. durch Extraktion
+//       sprechender Methoden optimiert werden?
 @SuppressWarnings("restriction")
 public class RenameSubroutineRefactoringTest
 {
@@ -91,6 +93,7 @@ public class RenameSubroutineRefactoringTest
 
 		List<INode> nodeList = new ArrayList<INode>();
 
+		// TODO: kann man den AST irgendwie auf Basis eines lesbaren Strings wie "PERFORM SUBROUTINE..." erzeugen?
 		addNode(nodeList, createAstNode(ENaturalASTNodeType.STATEMENT, 7, 207, OTHER_STATEMENT));
 		addNode(nodeList, createAstNode(ENaturalASTNodeType.STATEMENT, LENGTH_SELECTED, 215, OLD_SUBROUTINE_NAME));
 		addNode(nodeList, createAstNode(ENaturalASTNodeType.STATEMENT, LENGTH_SELECTED, 555, OLD_SUBROUTINE_NAME));

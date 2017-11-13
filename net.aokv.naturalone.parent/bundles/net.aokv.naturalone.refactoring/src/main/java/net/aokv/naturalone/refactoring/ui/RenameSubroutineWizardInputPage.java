@@ -80,6 +80,7 @@ public class RenameSubroutineWizardInputPage extends UserInputWizardPage
 			}
 		});
 
+		// TODO: Variable auf Englisch umbenennen
 		final Button referenzenAnpassenCheckbox = new Button(group, SWT.CHECK);
 		referenzenAnpassenCheckbox.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, false));
 		referenzenAnpassenCheckbox.setText("Referenzen anpassen?");

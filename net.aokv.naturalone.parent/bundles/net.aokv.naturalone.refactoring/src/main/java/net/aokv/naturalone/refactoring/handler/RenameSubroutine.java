@@ -22,6 +22,8 @@ import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.CanExecute;
 
+// TODO: Code-Formatierung vereinheitlichen (insb. Leerzeichen)
+
 @SuppressWarnings("restriction")
 public class RenameSubroutine
 {
@@ -45,6 +47,7 @@ public class RenameSubroutine
 				return openEditor(selectedText, shell, editor, document, parsingUnit);
 			}
 		}
+		// TODO: müsste hier nicht != 0 zurückkommen, wenn kein Editor vorhanden ist?
 		return 0;
 	}
 
@@ -62,6 +65,7 @@ public class RenameSubroutine
 		{
 			status = op.run(shell, "Rename Refactoring");
 		}
+		// TODO: sollte hier nicht wenigstens etwas protokolliert werden?
 		catch (InterruptedException e)
 		{}
 		return status;
