@@ -1,7 +1,5 @@
 package net.aokv.naturalone.refactoring.process;
 
-// TODO: unused imports
-
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.CoreException;
@@ -21,7 +19,6 @@ import com.softwareag.naturalone.natural.parser.ast.internal.INaturalASTNode;
 import com.softwareag.naturalone.natural.parser.internal.INode;
 import com.softwareag.naturalone.natural.parser.internal.ITokenForEditor;
 import com.softwareag.naturalone.natural.sourceeditor.editor.internal.INaturalParsingUnit;
-import com.softwareag.naturalone.natural.sourceeditor.editor.internal.NaturalSourceEditor;
 
 @SuppressWarnings("restriction")
 public class RenameSubroutineRefactoring extends Refactoring
@@ -33,16 +30,17 @@ public class RenameSubroutineRefactoring extends Refactoring
 	private DocumentChange change;
 	private String newSubroutineName;
 	private String name;
+	private boolean updateReferences = false;
 
 	public RenameSubroutineRefactoring(INaturalParsingUnit parsingUnit, TextSelection selectedText,
-										IDocument document, String name)
+			IDocument document, String name)
 	{
 		this.parsingUnit = parsingUnit;
 		this.selectedText = selectedText;
 		this.document = document;
 		this.name = name;
 	}
-	
+
 	@Override
 	public RefactoringStatus checkFinalConditions(IProgressMonitor monitor)
 			throws CoreException, OperationCanceledException
@@ -51,7 +49,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 		try
 		{
 			monitor.beginTask("Checking conditions...", 2);
-			
+
 			change = new DocumentChange(getName(), document);
 			MultiTextEdit edit = new MultiTextEdit();
 
@@ -63,7 +61,7 @@ public class RenameSubroutineRefactoring extends Refactoring
 			}
 
 			change.setEdit(edit);
-			
+
 		}
 		finally
 		{
@@ -72,36 +70,36 @@ public class RenameSubroutineRefactoring extends Refactoring
 		return status;
 	}
 
-	// TODO: Variablennamen ausschreiben
-	private void processNodeList(final TextSelection textSel, INaturalASTNode astRoot, MultiTextEdit edit)
+	private void processNodeList(final TextSelection textSelection, INaturalASTNode astRoot, MultiTextEdit multiTextEditedit)
 	{
 		for (Iterator<INode> iterator = astRoot.getChildren().iterator(); iterator.hasNext();)
 		{
-			INaturalASTNode node = (INaturalASTNode) iterator.next();
+			INaturalASTNode astNode = (INaturalASTNode) iterator.next();
 
-			if (node.hasChildren())
+			if (astNode.hasChildren())
 			{
-				processNodeList(textSel, node, edit);
+				processNodeList(textSelection, astNode, multiTextEditedit);
 			}
-			processNode(textSel, edit, node);
+			processNode(textSelection, multiTextEditedit, astNode);
 		}
 	}
 
-	// TODO: Variablennamen ausschreiben
-	private void processNode(TextSelection textSel, MultiTextEdit edit, INaturalASTNode node)
+	private void processNode(TextSelection textSelection, MultiTextEdit multiTextEdit, INaturalASTNode astNode)
 	{
-		ENaturalASTNodeType type = node.getNaturalASTNodeType();
+		ENaturalASTNodeType type = astNode.getNaturalASTNodeType();
 		if (type.equals(ENaturalASTNodeType.STATEMENT) || type.equals(ENaturalASTNodeType.SUBROUTINE))
 		{
-			ITokenForEditor token = node.getTokenForPosition();
+			processToken(textSelection, multiTextEdit, astNode.getTokenForPosition());
+		}
+	}
 
-			// TODO: könnte ggfs. eine sprechende Methode werden
-			if (token != null)
+	private void processToken(TextSelection textSelection, MultiTextEdit multiTextEdit, ITokenForEditor token)
+	{
+		if (token != null)
+		{
+			if (textSelection.getText().equals(token.getImage()) && textSelection.getLength() == token.getLength())
 			{
-				if (textSel.getText().equals(token.getImage()) && textSel.getLength() == token.getLength())
-				{
-					edit.addChild(new ReplaceEdit(token.getOffset(), token.getLength(), newSubroutineName));
-				}
+				multiTextEdit.addChild(new ReplaceEdit(token.getOffset(), token.getLength(), newSubroutineName));
 			}
 		}
 	}
@@ -116,7 +114,6 @@ public class RenameSubroutineRefactoring extends Refactoring
 	@Override
 	public Change createChange(IProgressMonitor arg0) throws CoreException, OperationCanceledException
 	{
-		// TODO: um der Erwartung besser zu entsprechen, sollte der change vielleicht wirklich erst hier erzeugt werden
 		return change;
 	}
 
@@ -126,17 +123,14 @@ public class RenameSubroutineRefactoring extends Refactoring
 		return name;
 	}
 
-	// TODO: was hat der Name mit dem Status zu tun? warum gibt ein Setter etwas zurück?
-	public RefactoringStatus setNewSubroutineName(String text)
+	public void setNewSubroutineName(String text)
 	{
 		this.newSubroutineName = text;
-		return new RefactoringStatus();
 	}
-	
-	// TODO: löschen
-	public void setUpdateReferences(boolean selection)
+
+	public void setUpdateReferences(boolean update)
 	{
-		// TODO Auto-generated method stub
+		this.updateReferences = update;
 	}
 
 }

@@ -22,56 +22,53 @@ import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.CanExecute;
 
-// TODO: Code-Formatierung vereinheitlichen (insb. Leerzeichen)
-
 @SuppressWarnings("restriction")
 public class RenameSubroutine
 {
 	@Execute
-	public int execute(@Named(IServiceConstants.ACTIVE_PART) MPart activePart, 
+	public int execute(@Named(IServiceConstants.ACTIVE_PART) MPart activePart,
 			@Named(IServiceConstants.ACTIVE_SELECTION) TextSelection selectedText,
 			@Named(IServiceConstants.ACTIVE_SHELL) Shell shell)
 	{
-		if( activePart.getObject() instanceof CompatibilityEditor)
-		{	
-			IEditorPart part =((CompatibilityEditor)activePart.getObject()).getEditor();
-			
-			if( part instanceof NaturalSourceEditor)
+		if (activePart.getObject() instanceof CompatibilityEditor)
+		{
+			IEditorPart part = ((CompatibilityEditor) activePart.getObject()).getEditor();
+
+			if (part instanceof NaturalSourceEditor)
 			{
 				NaturalSourceEditor editor = (NaturalSourceEditor) part;
 				NaturalDocumentProvider provider = (NaturalDocumentProvider) editor.getDocumentProvider();
 				IDocument document = provider.getDocument(editor.getEditorInput());
-				
+
 				INaturalParsingUnit parsingUnit = editor.getNaturalParsingUnit();
-				
+
 				return openEditor(selectedText, shell, editor, document, parsingUnit);
 			}
 		}
-		// TODO: müsste hier nicht != 0 zurückkommen, wenn kein Editor vorhanden ist?
-		return 0;
+		return -1;
 	}
-
 
 	private int openEditor(TextSelection selectedText, Shell shell, NaturalSourceEditor editor, IDocument document,
 			INaturalParsingUnit parsingUnit)
 	{
 		int status = RefactoringStatus.FATAL;
-		
-		RenameSubroutineRefactoring refactoring = new RenameSubroutineRefactoring(parsingUnit,selectedText,document,editor.getPartName());
-		
+
+		RenameSubroutineRefactoring refactoring =
+				new RenameSubroutineRefactoring(parsingUnit, selectedText, document, editor.getPartName());
+
 		RenameSubroutineWizard refactoringWizard = new RenameSubroutineWizard(refactoring);
 		RefactoringWizardOpenOperation op = new RefactoringWizardOpenOperation(refactoringWizard);
 		try
 		{
 			status = op.run(shell, "Rename Refactoring");
 		}
-		// TODO: sollte hier nicht wenigstens etwas protokolliert werden?
 		catch (InterruptedException e)
-		{}
+		{
+			System.out.println(e);
+		}
 		return status;
 	}
 
-	
 	@CanExecute
 	public boolean canExecute()
 	{

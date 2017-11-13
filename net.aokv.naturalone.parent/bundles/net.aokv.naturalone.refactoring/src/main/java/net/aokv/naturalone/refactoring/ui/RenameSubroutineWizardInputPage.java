@@ -44,7 +44,7 @@ public class RenameSubroutineWizardInputPage extends UserInputWizardPage
 	@Override
 	public void setVisible(boolean visible)
 	{
-		if (visible && !initialized )
+		if (visible && !initialized)
 		{
 			initialized = true;
 			Composite composite = (Composite) getControl();
@@ -80,18 +80,17 @@ public class RenameSubroutineWizardInputPage extends UserInputWizardPage
 			}
 		});
 
-		// TODO: Variable auf Englisch umbenennen
-		final Button referenzenAnpassenCheckbox = new Button(group, SWT.CHECK);
-		referenzenAnpassenCheckbox.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, false));
-		referenzenAnpassenCheckbox.setText("Referenzen anpassen?");
-		referenzenAnpassenCheckbox.setSelection(false);
-		referenzenAnpassenCheckbox.setEnabled(false);
-		referenzenAnpassenCheckbox.addSelectionListener(new SelectionAdapter()
+		final Button updateRefences = new Button(group, SWT.CHECK);
+		updateRefences.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, false));
+		updateRefences.setText("Referenzen anpassen?");
+		updateRefences.setSelection(false);
+		updateRefences.setEnabled(false);
+		updateRefences.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent e)
 			{
-				refactoring.setUpdateReferences(referenzenAnpassenCheckbox.getSelection());
+				refactoring.setUpdateReferences(updateRefences.getSelection());
 			}
 		});
 
@@ -105,8 +104,6 @@ public class RenameSubroutineWizardInputPage extends UserInputWizardPage
 	{
 		RefactoringStatus status = new RefactoringStatus();
 
-		status.merge(refactoring.setNewSubroutineName(subroutineName.getText()));
-
 		setPageComplete(!status.hasError());
 		int severity = status.getSeverity();
 		String message = status.getMessageMatchingSeverity(severity);
@@ -116,8 +113,7 @@ public class RenameSubroutineWizardInputPage extends UserInputWizardPage
 		}
 		else
 		{
-			setMessage("", NONE); //$NON-NLS-1$
+			setMessage("", NONE);
 		}
 	}
-
 }

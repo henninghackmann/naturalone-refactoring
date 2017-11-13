@@ -7,10 +7,10 @@ public class RenameSubroutineWizard extends RefactoringWizard
 {
 	public RenameSubroutineWizard(RenameSubroutineRefactoring refactoringContext)
 	{
-		super(refactoringContext, DIALOG_BASED_USER_INTERFACE | 
-									CHECK_INITIAL_CONDITIONS_ON_OPEN | 
-									PREVIEW_EXPAND_FIRST_NODE | 
-									NO_BACK_BUTTON_ON_STATUS_DIALOG);
+		super(refactoringContext, DIALOG_BASED_USER_INTERFACE |
+				CHECK_INITIAL_CONDITIONS_ON_OPEN |
+				PREVIEW_EXPAND_FIRST_NODE |
+				NO_BACK_BUTTON_ON_STATUS_DIALOG);
 		setDefaultPageTitle("Rename Subroutine");
 	}
 
